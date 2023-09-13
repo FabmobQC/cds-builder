@@ -1,0 +1,17 @@
+{
+  "name": "curblr-to-cds",
+  "version": "0.0.1",
+  "description": "CurbLR to CDS converter",
+  "author": "La Fabrique des Mobilités Québec",
+  "type": "module",
+  "scripts": {
+    "start": "tsc && node dist/index.js",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@fabmobqc/cds-types": "git+https://github.com/FabmobQC/cds-types.git",
+    "@fabmobqc/curblr-types": "git+https://github.com/FabmobQC/curblr-types.git",
+    "@types/node": "^20.6.0",
+    "typescript": "^5.2.2"
+  }
+}
