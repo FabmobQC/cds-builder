@@ -11,5 +11,7 @@
     "moduleResolution": "node"
   },
   "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Recommended"
+  "display": "Recommended",
+  "include": ["src", ".eslintrc.cjs"],
+  "exclude": ["node_modules", "dist"]
 }
