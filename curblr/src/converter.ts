@@ -1,5 +1,5 @@
 import type * as Cds from '@fabmobqc/cds-types'
-import * as CurbLr from '@fabmobqc/curblr-types'
+import type * as CurbLr from '@fabmobqc/curblr-types'
 import { buildCurbZones, dumpZonesToGeoJson } from './zones-builder.js'
 
 type CurbLrByLinearReference = Record<CurbLr.Location['shstRefId'], Record<CurbLr.Location['sideOfStreet'], CurbLr.CurbFeature[]>>

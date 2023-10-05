@@ -1,6 +1,6 @@
 import fs from 'fs'
 import type * as Cds from '@fabmobqc/cds-types'
-import * as CurbLr from '@fabmobqc/curblr-types'
+import type * as CurbLr from '@fabmobqc/curblr-types'
 import cleanCoords from '@turf/clean-coords'
 import distance from '@turf/distance'
 import { lineString, polygon } from '@turf/helpers'
@@ -115,15 +115,15 @@ const buildFullCurbLine = (curbLrFeatures: CurbLr.CurbFeature[]): Feature<LineSt
       const distance2 = distance(firstPositionCandidate2, closestToCandidate2)
 
       if (startIsLonger) {
-       if (distance1 > distance2) {
+        if (distance1 > distance2) {
           return firstPositionCandidate1
         }
       } else if (distance1 < distance2) {
-          return firstPositionCandidate1
+        return firstPositionCandidate1
       }
       return firstPositionCandidate2
     }
-  
+
     const findForFirstAndLastSegmentsAreDifferent = (): Position => {
       // We don't know yet which position is the last
       const lastPositionCandidate1 = lastSegment.geometry.coordinates[0]
@@ -151,7 +151,7 @@ const buildFullCurbLine = (curbLrFeatures: CurbLr.CurbFeature[]): Feature<LineSt
 }
 
 const buildZoneGeometry = (
-  start: number, 
+  start: number,
   end: number,
   curbStart: number,
   curbEnd: number,
@@ -161,9 +161,9 @@ const buildZoneGeometry = (
 ): Polygon => {
   const usedCurbLength = curbEnd - curbStart
 
-  const percentStart = (start-curbStart) /  usedCurbLength
-  const percentEnd = (end-curbStart) / usedCurbLength
-  const segment = lineSliceAlong(fullCurbLine, percentStart*fullCurbLineLength, percentEnd*fullCurbLineLength)
+  const percentStart = (start - curbStart) / usedCurbLength
+  const percentEnd = (end - curbStart) / usedCurbLength
+  const segment = lineSliceAlong(fullCurbLine, percentStart * fullCurbLineLength, percentEnd * fullCurbLineLength)
   return buildPolygonFromLineString(segment.geometry, sideOfStreet)
 }
 
@@ -211,7 +211,7 @@ export const buildCurbZones = (
 }
 
 export const dumpZonesToGeoJson = (zones: Cds.Zone[]): void => {
-  const geojson: FeatureCollection= {
+  const geojson: FeatureCollection = {
     type: 'FeatureCollection',
     features: zones.map((zone) => ({
       type: 'Feature',
@@ -223,5 +223,5 @@ export const dumpZonesToGeoJson = (zones: Cds.Zone[]): void => {
     }))
   }
 
-  fs.writeFile("zones-dump.geojson", JSON.stringify(geojson), 'utf8', () => {})
+  fs.writeFile('zones-dump.geojson', JSON.stringify(geojson), 'utf8', () => {})
 }
